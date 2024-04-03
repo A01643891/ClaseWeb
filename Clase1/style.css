@@ -1,0 +1,55 @@
+body{
+    margin: 0 auto;
+    max-width: 700px;
+}
+
+h1{
+    margin-top: 50px;
+    margin-bottom: 15px;
+    font-size: 32pt;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h2{
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-weight: normal;
+    font-size: 22px;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #6B6B6B;
+}
+
+p{
+    margin-top: 40px;
+    font-size: 20px;
+    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+li{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.Index{
+    margin-top: 30px;
+    font-size: 20px;
+    
+    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.inTitle{
+    font-weight: 700;
+}
+
+.list{
+    font-size: 20px;
+    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.Content{
+    margin-top: 200px;
+}
+
+.Space{
+    margin-top: 400px;
+}

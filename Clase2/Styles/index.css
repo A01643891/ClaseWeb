@@ -1,0 +1,52 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button{
+    width: 40px;
+    height: 40px;
+    border: solid;
+    border-radius: 5px;
+    border-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 5px;
+
+    user-select: none;
+}
+
+.button:hover{
+    background-color: rgba(162, 162, 162, 0.80);
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.col{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: solid;
+    border-radius: 5px;
+    border-color: black;
+}
+
+.disp{
+    width: 190px;
+    height: 40px;
+    border: solid;
+    border-radius: 5px;
+    border-color: black;
+    margin: 5px;
+    margin-top: 10px;
+}
