@@ -19,6 +19,19 @@ h2{
     color: #6B6B6B;
 }
 
+h3{
+    margin-top: 40px;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h4{
+    font-weight: bold;
+    font-size: 20px;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 p{
     margin-top: 40px;
     font-size: 20px;
@@ -47,7 +60,7 @@ li{
 }
 
 .Content{
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
 .Space{
