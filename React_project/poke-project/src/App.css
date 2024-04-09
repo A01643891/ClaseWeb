@@ -1,0 +1,185 @@
+  .main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .layout-game{
+    width: 350px;
+    height: 500px;
+    border: solid 5px black;
+    border-radius: 3% 3% 15% 3%;
+    background-color: rgb(230, 230, 230);
+  }
+
+  .screen-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
+  }
+
+  .screen-layout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 200px;
+    border: solid 5px black;
+    border-radius: 5% 5% 18% 5%;
+    background-color: rgb(154, 160, 178);
+  }
+
+  .screen-display{
+    width: 220px;
+    height: 165px;
+    background-color: rgb(133, 157, 68);
+    border: solid 2px black;
+  }
+
+  .buttons-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding-top: 0px;
+  }
+
+  .container-dpad{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100px;
+    height: 100px;
+    margin: 3%;
+    margin-bottom: 20px;
+  }
+
+  .container-select{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width: 100px;
+    height: 100px;
+    margin: 3%;
+    margin-top: 120px;
+  }
+
+  .container-action{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width: 100px;
+    height: 100px;
+    margin: 3%;
+  }
+
+  .button-a-all{
+    margin-bottom: 30px;
+  }
+
+  .button-a-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: rotate(-30deg);
+  }
+
+  .button-b-all{
+    margin-top: 30px;
+  }
+
+  .button-b-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: rotate(-30deg);
+  }
+
+  .button-b{
+    width: 35px;
+    height: 35px;
+    background-color: rgb(184, 0, 0);
+    border-radius: 100%;
+  }
+
+  .button-a{
+    width: 35px;
+    height: 35px;
+    background-color: rgb(184, 0, 0);
+    border-radius: 100%;  
+  }
+
+  .button-select-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: rotate(-30deg);
+  }
+
+  .button-start-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: rotate(-30deg);
+  }
+
+  .button-select{
+    width: 30px;
+    height: 9px;
+    background-color: rgb(154, 160, 178);
+    border-radius: 30%;
+  }
+
+  .button-start{
+    width: 30px;
+    height: 9px;
+    background-color: rgb(154, 160, 178);
+    border-radius: 30%;
+  }
+
+  .sides-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .up-button{
+    width: 26px;
+    height: 26px;
+    background-color: black;
+  }
+
+  .right-button{
+    width: 26px;
+    height: 26px;
+    background-color: black;
+  }
+
+  .center-button{
+    width: 26px;
+    height: 26px;
+    background-color: black;
+    margin: 1px;
+  }
+
+  .left-button{
+    width: 26px;
+    height: 26px;
+    background-color: black;
+  }
+
+  .down-button{
+    width: 26px;
+    height: 26px;
+    background-color: black;
+  }
