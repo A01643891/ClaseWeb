@@ -32,7 +32,7 @@
   }
 
   .screen-display{
-    width: 220px;
+    width: 250px;
     height: 165px;
     background-color: rgb(133, 157, 68);
     border: solid 2px black;
@@ -182,4 +182,23 @@
     width: 26px;
     height: 26px;
     background-color: black;
+  }
+
+  .poke-box{
+    height: auto;
+    width: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .poke-screen{
+    height: 165px;
+    width: 270px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    overflow: auto;
+    flex-wrap: wrap;
   }
