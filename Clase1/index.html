@@ -99,6 +99,33 @@
                     </a>
                 </li>
             </ul>
+            <li>
+                <a href="#list4">
+                    Intro React and hooks
+                </a>
+            </li>
+            <ul>
+                <li>
+                    <a href="#list4.1">
+                        React
+                    </a>
+                </li>
+                <li>
+                    <a href="#list4.2">
+                        Hooks
+                    </a>
+                </li>
+                <li>
+                    <a href="#list4.3">
+                        Data Structure: Object and Arrays
+                    </a>
+                </li>
+                <li>
+                    <a href="#list4.4">
+                        Methods
+                    </a>
+                </li>
+            </ul>
             
         </ol>
     </div>
@@ -347,6 +374,118 @@ Rel: This specifies the relationship between the HTML page and the file it is li
             ● for...of<br>
             Similar to the for...in, except the variable that is iterating over the object, saves the value of the cell, instead of its index.
 
+        </p>
+
+        <h3 id="list4">
+            4. Intro React and hooks
+        </h3>
+        <h4 id="list4.1">
+            4.1: React
+        </h4>
+        <p>
+            The library for web and native user interfaces.  <br>
+            <br>
+            React lets you build user interfaces out of individual pieces called components. <br>
+            <br>
+            Create your own React components like Thumbnail, LikeButton, and Video. Then combine them into entire screens, pages, and apps.<br>
+            <br>
+        function Video({ video }) {<br>
+            return (<br>
+                div<br>
+                    Thumbnail video={video} /<br>
+                    a href={video.url}<br>
+                    h3{video.title}/h3<br>
+                    p{video.description}/p<br>
+                    /a<br>
+                    LikeButton video={video} /<br>
+                /div<br>
+            );<br>
+        }<br>
+
+        </p>
+        <h4 id="list4.2">
+            4.2: Hooks
+        </h4>
+        <p>
+            Hooks let you use different React features from your components. You can either use the built-in Hooks or combine them to build your own. <br>
+            <br>
+<b>State Hooks</b> <br>
+<br>
+State lets a component “remember” information like user input. For example, a form component can use state to store the input value, while an image gallery component can use state to store the selected image index.<br>
+<br>
+<b>Effect Hooks</b> <br>
+<br>
+Effects let a component connect to and synchronize with external systems. This includes dealing with network, browser DOM, animations, widgets written using a different UI library, and other non-React code.<br>
+
+        </p>
+        <h4 id="list4.3">
+            4.3: Data Structure: Object and Arrays
+        </h4>
+        <p>
+            Numbers, Booleans, and strings are the atoms from which data structures are built.<br>
+            <br>
+<b>Data Sets</b><br>
+<br>
+To work with a chunk of digital data, we first have to find a way to represent it in our machine’s memory. Say, for example, that we want to represent a collection of the numbers 2, 3, 5, 7, and 11.<br>
+<br>
+let listOfNumbers = [2, 3, 5, 7, 11];<br>
+<br>
+console.log(listOfNumbers[2]);<br>
+// → 5<br>
+console.log(listOfNumbers[0]);<br>
+// → 2<br>
+console.log(listOfNumbers[2 - 1]);<br>
+// → 3<br>
+<br>
+<b>Objects</b><br><br>
+The binary in operator, when applied to a string and an object, tells you whether that object has a property with that name.<br>
+<br>
+let anObject = {left: 1, right: 2};<br>
+console.log(anObject.left);<br>
+// → 1<br>
+delete anObject.left;<br>
+console.log(anObject.left);<br>
+// → undefined<br>
+<br>
+console.log("left" in anObject);<br>
+// → false<br>
+console.log("right" in anObject);<br>
+// → true<br>
+<br>
+To find out what properties an object has, you can use the Object.keys function.<br>
+<br>
+console.log(Object.keys({x: 0, y: 0, z: 2}));<br>
+// → (3) ['x', 'y', 'z']<br>
+
+
+        </p>
+        <h4 id="list4.4">
+            4.4: Methods
+        </h4>
+        <p>
+            Both string and array values contain, in addition to the length property, a number of properties that hold function values.<br>
+            <br>
+let doh = "Doh";<br>
+<br>
+console.log(typeof doh.toUpperCase);<br>
+// → function<br>
+<br>
+console.log(doh.toUpperCase());<br>
+// → DOH<br>
+<br>
+This example demonstrates two methods you can use to manipulate arrays:<br>
+<br>
+let sequence = [1, 2, 3];<br>
+<br>
+sequence.push(4);<br>
+sequence.push(5);<br>
+<br>
+console.log(sequence);<br>
+// → (5) [1, 2, 3, 4, 5]<br>
+console.log(sequence.pop());<br>
+// → 5<br>
+console.log(sequence);<br>
+// → (4) [1, 2, 3, 4]<br>
         </p>
         <div class="Space">
 
