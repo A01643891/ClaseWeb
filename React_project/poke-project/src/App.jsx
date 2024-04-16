@@ -1,14 +1,19 @@
 import { useEffect, useState } from 'react';
 import './App.css'
 import ScreenPokemones from './components/ScreenPokemones';
+import BattleScreen from './components/BattleScreen';
 
 function App() {
   const [pokemones, setPokemones] = useState([]);
   const [position, setPosition] = useState(0);
 
-  const []= useState(false);
+  const [myPokeSelect, setMyPokeSelect] = useState([]);
+  const [compRandSelect, setCompRandSelect] = useState([]);
 
-  const [myPokeSelect, setMyPokeSelect] = useState([])
+  const [startGame, setStartGame] = useState(false);
+
+  const [myHealth, setMyHealth] = useState(100);
+  const [enemyHealth, setEnemyHealth] = useState(100);
 
   const pokeUrl = "https://pokeapi.co/api/v2/pokemon";
 
@@ -27,7 +32,7 @@ function App() {
 
     const pokemonWithImages = await Promise.all(dataPromise);
     setPokemones(pokemonWithImages);
-    console.log(pokemonWithImages);
+    //console.log(pokemonWithImages);
   }
 
   const handleSelection = (forward) =>{
@@ -47,15 +52,33 @@ function App() {
   const filterSelect = () =>{
     const mySelection = pokemones.filter((value, idx) => position == idx);
     setMyPokeSelect(mySelection);
-    console.log(mySelection);
-
+    //console.log(mySelection);
+    setMyHealth(mySelection[0].stats[0].base_stat)
+    //console.log("My health " + myHealth);
     computerSelection();
   }
 
   const computerSelection = () =>{
     const computerPos = Math.floor(Math.random() * 20);
     const computerSelect = pokemones.filter((value, idx) => computerPos == idx);
-    console.log(computerSelect);
+    setCompRandSelect(computerSelect);
+    setEnemyHealth(computerSelect[0].stats[0].base_stat)
+    //console.log("Enemy health " + enemyHealth);
+    //console.log(computerSelect);
+  }
+
+  const handleStart = () => {
+    setStartGame(true);
+  }
+
+  const handleAttack = () => {
+    const myAtackDmg = Math.floor(Math.random() * 30);
+    const enemyAtackDmg = Math.floor(Math.random() * 30);
+
+
+    setEnemyHealth(enemyHealth-myAtackDmg);
+    setMyHealth(myHealth-enemyAtackDmg);
+    
   }
 
   useEffect(() => {
@@ -65,13 +88,24 @@ function App() {
   return (
     <>
     <div className="main-container">
-    <h1>Hola mundo</h1>
+    <h1>Poke Battles</h1>
 
     <div className='layout-game'>
       <div className='screen-container'>
         <div className='screen-layout'>
           <div className='screen-display'>
-            <ScreenPokemones pokemones={pokemones} position={position}/>
+          {
+            startGame ? (
+              <BattleScreen myPokeSelect={myPokeSelect}
+              compRandSelect ={compRandSelect}
+              myHealth = {myHealth}
+              enemyHealth = {enemyHealth}/>
+            ) : (
+              <ScreenPokemones pokemones={pokemones} position={position}/>
+            )
+            
+          }
+            
           </div>
         </div>
       </div>
@@ -97,7 +131,7 @@ function App() {
             <div>select</div>
           </div>
           <div className='button-start-container'>
-            <button className='button-start'></button>
+            <button className='button-start' onClick={() => handleStart()}></button>
             <div>start</div>
           </div>
         </div>
@@ -112,7 +146,7 @@ function App() {
           
           <div className='button-a-all'>
             <div className='button-a-container'>
-              <button className='button-a'></button>
+              <button className='button-a' onClick={() => handleAttack()}></button>
               <div>A</div>
             </div>
           </div>

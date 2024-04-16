@@ -1,0 +1,38 @@
+
+.battle-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-image: url(https://preview.redd.it/d9spuwer2c491.png?width=1050&format=png&auto=webp&s=9ca8c75c63da9f8bb134e955d73e2770d073375e);
+    background-size: cover;
+}
+
+.enemy-container{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    height: 82px;
+}
+
+.my-container{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 82px;
+}
+
+.my-health{
+    margin-left: 36px;
+}
+
+.enemy-health{
+    margin-top: 60px;
+}
+
+.enemy-img{
+    margin-top: 40px;
+}
