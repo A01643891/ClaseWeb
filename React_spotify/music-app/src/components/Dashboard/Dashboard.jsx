@@ -14,6 +14,8 @@ const Dashboard = () =>{
         "album", "artist", "playlist", "track", "show", "episode", "audiobook"
     ]
 
+    const [results, setResults] = useState([]);
+
     const handleChange = (e) =>{
         const newValues = {
             ...form,
@@ -49,6 +51,67 @@ const Dashboard = () =>{
             token
         )
         console.log(response);
+        setResults(response.tracks.items);
+    }
+
+    const getDeviceId = async () =>{
+        const token = `Bearer ${localStorage.getItem('token')}`;
+        const response = await fetchSpotifyApi(
+            'https://api.spotify.com/v1/me/player/devices',
+            'GET',
+            null,
+            'application/json',
+            token
+        );
+        console.log(response);
+        return response.devices[0].id;
+    }
+
+    const handlePlayMusic = async (song) => {
+        const token = `Bearer ${localStorage.getItem('token')}`;
+        const data = {
+        uris: [song],
+        };
+
+        //const id_device = "";
+
+        const playSong = await fetchSpotifyApi(
+            `https://api.spotify.com/v1/me/player/play?device_id=${id_device}`,
+            'PUT',
+            JSON.stringify(data),
+            'application/json',
+            token
+        );
+        console.log(playSong);
+    }
+
+    const getToken = async () => {
+        // stored in the previous step
+    const urlParams = new URLSearchParams(window.location.search);
+    let code = urlParams.get('code');
+    let codeVerifier = localStorage.getItem('code_verifier');
+    console.log({ codeVerifier });
+    const url = 'https://accounts.spotify.com/api/token';
+    //const clientId = '';
+    const redirectUri = 'http://localhost:5173/';
+    const payload = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        client_id: clientId,
+        grant_type: 'authorization_code',
+        code,
+        redirect_uri: redirectUri,
+        code_verifier: codeVerifier,
+      }),
+    };
+
+    const body = await fetch(url, payload);
+    const response = await body.json();
+
+    localStorage.setItem('token', response.access_token);
     }
 
     return (
@@ -56,22 +119,34 @@ const Dashboard = () =>{
             <div className=" m-4 text-4xl">
                 Spotify Music
             </div>
-
-            <div className="m-2 border-black border-2">
-                <input className="px-2 py-1 " type="text"
-                name="search"
-                placeholder="Search"
-                value={form.search}
-                onChange={handleChange}
-                />
+            <div className="flex justify-center items-center flex-row">
+                <div className="m-2 border-black border-2">
+                    <input className="px-2 py-1 " type="text"
+                    name="search"
+                    placeholder="Search"
+                    value={form.search}
+                    onChange={handleChange}
+                    />
+                </div>
+                <div className="m-2 border-black border-2">
+                    <input className="px-2 py-1 " type="text"
+                    name="artist"
+                    placeholder="Artist"
+                    value={form.artist}
+                    onChange={handleChange}
+                    />
+                </div>
             </div>
-            <div className="m-2 border-black border-2">
-                <input className="px-2 py-1 " type="text"
-                name="artist"
-                placeholder="Artist"
-                value={form.artist}
-                onChange={handleChange}
-                />
+            
+            <div>
+                <button onClick={getToken} className=" m-2 p-1 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 rounded-md">
+                    Get Token
+                </button>
+            </div>
+            <div>
+                <button onClick={getDeviceId} className=" m-2 p-1 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 rounded-md">
+                    Get Device ID
+                </button>
             </div>
             <div>
                 <button onClick={handleSearch} className=" p-1 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 rounded-md">
@@ -80,7 +155,7 @@ const Dashboard = () =>{
             </div>
 
             <div>
-                <select name="types" onChange={handleSelectChange}>
+                <select className=" border-2 border-black m-2" name="types" onChange={handleSelectChange}>
                     {types.map((item)=>(
                         <option key={item} value={item}>
                             {item}
@@ -88,71 +163,36 @@ const Dashboard = () =>{
                     ))}
                 </select>
             </div>
-
-            <div className="flex flex-col">
-                <div className="flex flex-row">
-                    <div className="text-2xl m-2">
-                        1.
-                    </div>
-                    <div className="flex flex-col">
-                        <div className="text-xl">
-                            Hail to the King
+            <div>
+            {results.length > 0 && (
+                <div>
+                    {results.map((item, idx)=>(
+                        <div className="flex flex-col" key={item.id}>
+                            <div className="flex flex-row">
+                                <div className="text-2xl m-2">
+                                    {idx + 1}
+                                </div>
+                                <div className=" h-12 w-12 m-2">
+                                    <img src={item.album.images[0].url}/>
+                                </div>
+                                <div className="flex flex-col">
+                                    <div className="text-xl">
+                                        {item.name}
+                                    </div>
+                            
+                                     <div>
+                                        {item.artists[0].name}
+                                    </div>
+                                </div>
+                                <div className=" self-center mx-2 p-1 bg-green-500 hover:bg-green-600 active:bg-green-700 rounded-md">
+                                    <button onClick={() => handlePlayMusic(item.uri)}>Play</button>
+                                </div>
+                            </div> 
                         </div>
-                        
-                        <div>
-                            Avenged Sevenfold
-                        </div>
-                    </div>
+                    ))}
                 </div>
-
-                <div className="flex flex-row">
-                    <div className="text-2xl m-2">
-                        2.
-                    </div>
-                    <div className="flex flex-col">
-                        <div className="text-xl">
-                            Bury the Light
-                        </div>
-                        
-                        <div>
-                            Casey Edwards, Victor Borba
-                        </div>
-                    </div>
-                </div>
-
-                <div className="flex flex-row">
-                    <div className="text-2xl m-2">
-                        3.
-                    </div>
-                    <div className="flex flex-col">
-                        <div className="text-xl">
-                            Bfg Division
-                        </div>
-                        
-                        <div>
-                            Mick Gordon
-                        </div>
-                    </div>
-                </div>
-
-                <div className="flex flex-row">
-                    <div className="text-2xl m-2">
-                        4.
-                    </div>
-                    <div className="flex flex-col">
-                        <div className="text-xl">
-                            This Fire
-                        </div>
-                        
-                        <div>
-                            Franz Ferdinand
-                        </div>
-                    </div>
-                </div>
-                
+            )}
             </div>
-            
-            
         </div>
     )
 }

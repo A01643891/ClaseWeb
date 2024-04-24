@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { fetchSpotifyApi } from "../../api/spotifyAPI";
 import { useNavigate } from 'react-router-dom';
+import { authFLow, getDataAuth } from "../../setup";
 
 const Login = () =>{
 
@@ -21,9 +22,9 @@ const Login = () =>{
         setForm(newValues);
     }
 
-    const handleLogin = async() => {
-        const client_id = '4c01032e74f64dddb94629ece03041e1';
-        const client_secret = 'ce9819c8ede940a2b74e3da76374ed57';
+/*     const handleLogin = async() => {
+        const client_id = '';
+        const client_secret = '';
         const url = 'https://accounts.spotify.com/api/token'
         const body = 'grant_type=client_credentials';
         const token = 'Basic ' + btoa(client_id + ':' + client_secret);
@@ -39,8 +40,12 @@ const Login = () =>{
         console.log(response);
         localStorage.setItem('token', response.access_token);
         navigate('/dashboard');
-    }
+    } */
 
+    const handleLogin = async () => {
+        const codeChallengeProm = await getDataAuth();
+        authFLow(codeChallengeProm);
+    };
     
 
     return (
