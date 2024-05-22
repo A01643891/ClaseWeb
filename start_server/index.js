@@ -7,6 +7,8 @@ const port = 3000
 
 //routes
 const userRoutes = require("./routes/userRoutes");
+const descriptionRoutes = require("./routes/descriptionRoutes");
+const feedbackRoutes = require("./routes/feedbackRoutes");
 
 //express functions
 app.use(cors());
@@ -24,3 +26,5 @@ app.listen(port, () =>{
 
 //endpoints
 app.use("/users", userRoutes);
+app.use("/description", descriptionRoutes);
+app.use("/feedback", feedbackRoutes);
