@@ -4,7 +4,11 @@ const Form = () => {
 
     const [form, setForm] = useState({
         name: '',
-        email: ''
+        email: '',
+        role: '',
+        age: 0,
+        sex: '',
+        tag: ''
     })
 
     const handleChange = (e) => {
@@ -16,15 +20,22 @@ const Form = () => {
         setForm(newForm);
     };
 
-    const handleSubmitForm = async() => {
-        const res = await fetch('http://localhost:3000/users', {
+    const handleSubmitForm = async(e) => {
+        e.preventDefault();
+        try{
+            const res = await fetch('http://localhost:3000/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(form)
-        });
-        return res.status === 200? alert('Registro exitoso') : alert('Error al registrar');
+            });
+            return res.status === 200? alert('Registro exitoso') : alert('Error al registrar');
+        } catch (error) {
+            alert('Error al registrar')
+            throw new Error('Error al registrar');
+        }
+        
     }
 
     return(
@@ -46,6 +57,39 @@ const Form = () => {
                     placeholder="email"
                     onChange={handleChange}/>
             </form>
+            <form>
+                <p>Rol</p>
+                <input style={{height: "25px", paddingLeft: "5px"}}s
+                    type="text"
+                    name="role"
+                    placeholder="rol"
+                    onChange={handleChange}/>
+            </form>
+            <form>
+                <p>Edad</p>
+                <input style={{height: "25px", paddingLeft: "5px"}}s
+                    type="numeric"
+                    name="age"
+                    placeholder="edad"
+                    onChange={handleChange}/>
+            </form>
+            <form>
+                <p>Sexo</p>
+                <input style={{height: "25px", paddingLeft: "5px"}}s
+                    type="text"
+                    name="sex"
+                    placeholder="sexo"
+                    onChange={handleChange}/>
+            </form>
+            <form>
+                <p>Tag</p>
+                <input style={{height: "25px", paddingLeft: "5px"}}s
+                    type="text"
+                    name="tag"
+                    placeholder="tag"
+                    onChange={handleChange}/>
+            </form>
+
             <div style={{paddingTop: '2%'}}>
                 <button onClick={handleSubmitForm}
                 style={{ height: '35px', width: '120px', backgroundColor: '#399C7E',  border:'none', borderRadius: '5px'}} type="submit">
