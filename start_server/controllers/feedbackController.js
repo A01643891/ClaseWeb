@@ -11,4 +11,18 @@ async function getFeedbackByID(req, res) {
     }
 }
 
-module.exports = { getFeedbackByID };
+async function createFeedback(req, res) {
+    
+    try{
+        const { feedback } = req.body;
+        const { userId } = req.params;
+        const newFeedback = await feedbackModel.createFeedback(feedback, userId);
+        res.status(201).json(newFeedback);
+    }catch (error){
+        console.log(error);
+        res.status(500).send(error);
+    }
+
+}
+
+module.exports = { getFeedbackByID, createFeedback };

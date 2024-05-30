@@ -17,4 +17,15 @@ const getDescriptionByID = async(id) =>{
     }
 }
 
-module.exports = { getAllDescriptions, getDescriptionByID };
+const createDescription = async (description, prescription, userId) => {
+    try{
+        const query = 'INSERT INTO description (description, prescription, user_id) VALUES ($1, $2, $3) RETURNING *;';
+        const {rows} = await db.query(query, [description, prescription, userId]);
+        return rows[0];
+    }catch (error){
+        console.log(error);
+        throw new Error(error);
+    }
+}
+
+module.exports = { getAllDescriptions, getDescriptionByID, createDescription };

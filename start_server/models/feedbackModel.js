@@ -11,4 +11,15 @@ const getFeedbackByID = async(id) =>{
     }
 }
 
-module.exports = { getFeedbackByID };
+const createFeedback = async(feedback, userId) => {
+    try {
+        const query = 'INSERT INTO feedback (feedback, user_id) VALUES ($1, $2) RETURNING *;';
+        const { rows } = await db.query(query, [feedback, userId]);
+        return rows[0];
+    } catch (error){
+        console.log(error);
+        throw new Error(error);
+    }
+}
+
+module.exports = { getFeedbackByID, createFeedback };
