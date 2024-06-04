@@ -18,10 +18,12 @@ const Form = () => {
             [name]: value,
         };
         setForm(newForm);
+        console.log(newForm);
     };
 
     const handleSubmitForm = async(e) => {
         e.preventDefault();
+        console.log(form);
         try{
             const res = await fetch('http://localhost:3000/users', {
             method: 'POST',
@@ -40,7 +42,7 @@ const Form = () => {
 
     return(
         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
-            <h1 >Form</h1>
+            <h1>Form</h1>
             <form>
                 <p>Nombre</p>
                 <input style={{height: "25px", paddingLeft: "5px"}}
@@ -51,7 +53,7 @@ const Form = () => {
             </form>
             <form>
                 <p>Email</p>
-                <input style={{height: "25px", paddingLeft: "5px"}}s
+                <input style={{height: "25px", paddingLeft: "5px"}}
                     type="text"
                     name="email"
                     placeholder="email"
@@ -59,33 +61,37 @@ const Form = () => {
             </form>
             <form>
                 <p>Rol</p>
-                <input style={{height: "25px", paddingLeft: "5px"}}s
+                <input style={{height: "25px", paddingLeft: "5px"}}
                     type="text"
                     name="role"
+                    value={form.role}
                     placeholder="rol"
                     onChange={handleChange}/>
             </form>
             <form>
                 <p>Edad</p>
-                <input style={{height: "25px", paddingLeft: "5px"}}s
-                    type="numeric"
+                <input style={{height: "25px", paddingLeft: "5px"}}
+                    type="number"
                     name="age"
+                    value={form.age}
                     placeholder="edad"
                     onChange={handleChange}/>
             </form>
             <form>
                 <p>Sexo</p>
-                <input style={{height: "25px", paddingLeft: "5px"}}s
+                <input style={{height: "25px", paddingLeft: "5px"}}
                     type="text"
                     name="sex"
+                    value={form.sex}
                     placeholder="sexo"
                     onChange={handleChange}/>
             </form>
             <form>
                 <p>Tag</p>
-                <input style={{height: "25px", paddingLeft: "5px"}}s
+                <input style={{height: "25px", paddingLeft: "5px"}}
                     type="text"
                     name="tag"
+                    value={form.tag}
                     placeholder="tag"
                     onChange={handleChange}/>
             </form>

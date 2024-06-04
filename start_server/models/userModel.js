@@ -15,8 +15,8 @@ const getUserByID = async (id) => {
 
 const createUser = async(user) => {
     try {
-        const query = 'INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *;';
-        const response = await db.query(query, [user.name, user.email]);
+        const query = 'INSERT INTO users (name, email, role, age, sex, tag) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;';
+        const response = await db.query(query, [user.name, user.email, user.role, user.age, user.sex, user.tag]);
         console.log(response);
         return response.rows[0];
     } catch (error) {
