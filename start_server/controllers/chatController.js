@@ -1,5 +1,5 @@
 require('dotenv').config();
-const OpenAI = require("openai-api");
+const OpenAI = require("openai");
 
 async function getResponseChat(req, res){
     const {prompt} = req.body;
