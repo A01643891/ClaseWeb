@@ -1,5 +1,6 @@
 import React from "react"
 import { useNavigate } from "react-router-dom";
+import userImage from "../../../assets/user.svg"
 
 const Card = ({user}) => {
     const navigate = useNavigate();
@@ -10,17 +11,23 @@ const Card = ({user}) => {
 
     return (
         <div style={{
-            width: '120px',
-            height: '40px',
-            border: 'solid black 2px',
+            width: '230px',
+            height: '60px',
+            boxShadow: '0px 10px 15px -3px rgba(0,0,0,0.1)',
             borderRadius: '5px',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             cursor: 'pointer'}}
             onClick={handleClick}>
-            {user.name}
-            {user.email}
+                <div>
+                    <img src={userImage} width={50} alt="users"/>
+                </div>
+                <div style={{marginLeft: "20px"}}>
+                    <p>{user.name}</p>
+                    <p>{user.email}</p>
+                </div>
+            
         </div>
     )
 }
