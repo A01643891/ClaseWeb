@@ -11,6 +11,17 @@ async function getDescriptionByID(req, res) {
     }
 }
 
+async function getPrescriptionByID(req, res) {
+    const { id } = req.params;
+    try {
+        const prescription = await descriptionModel.getPrescriptionByID(id);
+        res.status(200).json(prescription);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+    }
+}
+
 async function createDescription(req, res) {
     try {
         const {userId} = req.params;
@@ -23,4 +34,4 @@ async function createDescription(req, res) {
     }
 }
 
-module.exports = { getDescriptionByID, createDescription };
+module.exports = { getDescriptionByID, createDescription, getPrescriptionByID };

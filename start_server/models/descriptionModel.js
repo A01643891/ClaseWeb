@@ -16,6 +16,16 @@ const getDescriptionByID = async(id) =>{
         throw new Error(error);
     }
 }
+const getPrescriptionByID = async(id) =>{
+    try {
+        const query = 'SELECT U.name, d.prescription FROM users U JOIN description d ON U.id = d.user_id WHERE U.id = $1;';
+        const { rows } = await db.query(query, [id]);
+        return rows;
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+}
 
 const createDescription = async (description, prescription, userId) => {
     try{
@@ -28,4 +38,4 @@ const createDescription = async (description, prescription, userId) => {
     }
 }
 
-module.exports = { getAllDescriptions, getDescriptionByID, createDescription };
+module.exports = { getAllDescriptions, getDescriptionByID, createDescription, getPrescriptionByID };
