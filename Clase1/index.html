@@ -126,6 +126,40 @@
                     </a>
                 </li>
             </ul>
+            <li>
+                <a href="#list5">
+                    Fetch and Methods
+                </a>
+            </li>
+            <ul>
+                <li>
+                    <a href="#list5.1">
+                        Fetch
+                    </a>
+                </li>
+                <li>
+                    <a href="#list5.2">
+                        Methods (GET, POST, PUT, DELETE)
+                    </a>
+                </li>
+            </ul>
+            <li>
+                <a href="#list6">
+                    Node and Express
+                </a>
+            </li>
+            <ul>
+                <li>
+                    <a href="#list6.1">
+                        Intro Node
+                    </a>
+                </li>
+                <li>
+                    <a href="#list6.2">
+                        Intro Express
+                    </a>
+                </li>
+            </ul>
             
         </ol>
     </div>
@@ -487,10 +521,126 @@ console.log(sequence.pop());<br>
 console.log(sequence);<br>
 // → (4) [1, 2, 3, 4]<br>
         </p>
-        <div class="Space">
 
-        </div>
+        <h3 id="list5">
+            5. Fetch and Methods
+        </h3>
+        <h4 id="list5.1">
+            5.1: Fetch
+        </h4>
+        <p>
+            Fetch is promise-based and provides a better alternative that can be easily used in service workers. Fetch also integrates advanced HTTP concepts such as CORS and other extensions to HTTP.
+Fetch is the name of the API for Javascript with which we can make asynchronous HTTP requests using promises.<br>
+<br>
+async function logMovies() {<br>
+  const response = await fetch("http://example.com/movies.json");<br>
+  const movies = await response.json();<br>
+  console.log(movies);<br>
+}<br>
+<br>
+The fetch() method can optionally accept a second parameter, an init object that allows you to control a number of different settings:<br><br>
+async function postData(url = "", data = {}) {<br>
+// Default options are marked with *<br>
+  const response = await fetch(url, {<br>
+    method: "POST", // *GET, POST, PUT, DELETE, etc.<br>
+    headers: {<br>
+      "Content-Type": "application/json",<br>
+      // 'Content-Type': 'application/x-www-form-urlencoded',<br>
+    },<br>
+    body: JSON.stringify(data), // body data type must match "Content-Type" header<br>
+  });<br>
+  return response.json(); // parses JSON response into native JavaScript objects<br>
+}<br>
+<br>
+        </p>
+        <h4 id="list5.2">
+            5.2: Methods
+        </h4>
+        <p>
+           <b>GET</b> <br><br>
+The GET method is used to retrieve data on a server. Clients can use the GET method to access all of the resources of a given type,
+or they can use it to access a specific resource. For instance, a GET request to the /products endpoint of an e-commerce API would 
+return all of the products in the database, while a GET request to the /products/123 endpoint would return the specific product with
+an ID of 123. GET requests typically do not include a request body, as the client is not attempting to create or update data.<br><br>
+<b>POST</b><br><br>
+The POST method is used to create new resources. For instance, if the manager of an e-commerce store wanted to add a new product to the
+database, they would send a POST request to the /products endpoint. Unlike GET requests, POST requests typically include a request body, 
+which is where the client specifies the attributes of the resource to be created.<br><br>
+<b>PUT</b><br><br>
+The PUT method is used to replace an existing resource with an updated version. This method works by replacing the entire resource 
+(i.e., the specific product located at the /products/123 endpoint) with the data that is included in the request’s body. This means that 
+any fields or properties not included in the request body are deleted, and any new fields or properties are added.<br><br>
+<b>PATCH</b><br><br>
+The PATCH method is used to update an existing resource. It is similar to PUT, except that PATCH enables clients to update specific 
+properties on a resource—without overwriting the others. For instance, if you have a product resource with fields for name, brand, 
+and price, but you only want to update the price, you could use the PATCH method to send a request that only includes the new value for 
+the price field. The rest of the resource would remain unchanged. This behavior makes the PATCH method more flexible and efficient than PUT.<br><br>
+<b>DELETE</b><br><br>
+The DELETE method is used to remove data from a database. When a client sends a DELETE request, it is requesting that the resource at the
+specified URL be removed. For example, a DELETE request to the /products/123 endpoint will permanently remove the product with an ID of 123
+from the database. Some APIs may leverage authorization mechanisms to ensure that only clients with the appropriate permissions are able to
+delete resources.<br><br>
+        </p>
+        <h3 id="list6">
+            6. Node and Express
+        </h3>
+        <h4 id="list6.1">
+            6.1: Intro Node
+        </h4>
+        <p>
+            Es un entorno que trabaja en tiempo de ejecución, de código abierto, multi-plataforma, que permite a los desarrolladores 
+            crear toda clase de herramientas de lado servidor y aplicaciones en JavaScript.<br>
+            <br>
+Node tiene un gran número de ventajas:
+        </p>
+<ul>
+  <li>
+    ¡Gran rendimiento! Node ha sido diseñado para optimizar el rendimiento y la escalabilidad en aplicaciones web
+  </li> 
+  <li>
+    El código está escrito en "simple JavaScript", lo que significa que se pierde menos tiempo ocupándose de las 
+    "conmutaciones de contexto" entre lenguajes cuando estás escribiendo tanto el código del explorador web como del servidor.<br>
+  </li>
+  <li>
+    El gestor de paquetes de Node (NPM del inglés: Node Packet Manager) proporciona acceso a cientos o miles de paquetes reutilizables.<br>
+  </li>
+  <li>
+    Tiene un ecosistema y comunidad de desarrolladores de terceros muy activa.<br>
+  </li>
+</ul>
+<p>
+    Otras tareas comunes de desarrollo web no están directamente soportadas por el mismo Node. Si quieres añadir el manejo específico 
+    de diferentes verbos HTTP (ej, GET, POST, DELETE, etc.), gestionar de forma separada las peticiones por medio de diferentes direcciones
+    URL ("rutas"), servir ficheros estáticos o usar plantillas para crear la respuesta de forma dinámica, necesitarás escribir el código por
+    tí mismo, o ¡puedes evitar reinventar la rueda usando un framework web!
+</p>
+
+
+        <h4 id="list6.2">
+            6.2: Intro Express
+        </h4>
+        <p>
+            Express es el framework web más popular de Node, y es la librería subyacente para un gran número de otros frameworks
+            web de Node populares. Proporciona mecanismos para:
+        </p>
+        <ul>
+            <li>
+                Escritura de manejadores de peticiones con diferentes verbos HTTP en diferentes caminos URL (rutas).
+            </li>
+            <li>
+                Integración con motores de renderización de "vistas" para generar respuestas mediante la introducción de datos en plantillas. 
+            </li>
+            <li>
+                Establecer ajustes de aplicaciones web como qué puerto usar para conectar, y la localización de las plantillas que 
+                se utilizan para renderizar la respuesta.
+            </li>
+            <li>
+                Añadir procesamiento de peticiones "middleware" adicional en cualquier punto dentro de la tubería de manejo de la petición.
+            </li>
+        </ul>
+
     </div>
-  
+    <div class="Space">
+    </div>
 </body>
 </html>
