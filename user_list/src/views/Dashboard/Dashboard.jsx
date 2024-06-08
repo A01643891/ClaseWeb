@@ -1,9 +1,19 @@
 import Card from "./components/card"
+import NavigationBar from "../../shared/NavigationBar";
 import { useEffect, useState } from 'react'
 
 const Dashboard = () => {
 
     const [users, setUsers] = useState([]);
+    const [filter, setFilter] = useState('');
+
+    const handleFilterChange = (value) => {
+        setFilter(value);
+    };
+
+    const filteredUsers = users.filter(user =>
+        user.name.toLowerCase().includes(filter.toLowerCase())
+    );
 
     const fetchUsers = async() => {
         const response = await fetch('http://localhost:3000/users');
@@ -14,20 +24,23 @@ const Dashboard = () => {
 
     useEffect(() => {
         fetchUsers();
-    }, [])
+    }, []);
 
     return (
-       <div style={{display: 'flex',
-       justifyContent: 'center',
-       alignItems: 'center',
-       flexDirection: 'column'
-       }}>
-        {users.map((user) => (
-            <div key={user.id} style={{padding: '1%'}}>
-                <Card user={user}/> 
+        <NavigationBar onFilterChange={handleFilterChange}>
+            <div style={{display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column'
+            }}>
+                {filteredUsers.map((user) => (
+                    <div key={user.id} style={{padding: '1%'}}>
+                        <Card user={user}/> 
+                    </div>
+                ))}
             </div>
-        ))}
-       </div>
+        </NavigationBar>
+       
     )
 }
 

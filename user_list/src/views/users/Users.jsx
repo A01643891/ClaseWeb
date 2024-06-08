@@ -51,7 +51,7 @@ const Users = () => {
         const prompt = {
             prompt: form.description
         }
-        const response = await fetch('http://localhost:3000/chat', {
+        const response = await fetch('http://localhost:3000/chat/gemini', {
             method: 'POST',
             body: JSON.stringify(prompt)
         });
@@ -62,7 +62,8 @@ const Users = () => {
 
     const handleSaveDescription = async() => {
         const descriptions = {
-            description: form.description
+            description: form.description,
+            prescription: form.prescription
         }
         const response = await fetch('http://localhost:3000/description/' + id, {
             method: 'POST',
