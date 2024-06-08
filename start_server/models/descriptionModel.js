@@ -9,7 +9,7 @@ const getAllDescriptions = async() =>{
 const getDescriptionByID = async(id) =>{
     try {
         const query = 
-        'SELECT U.name, d.description, d.prescription, d.createat FROM users U JOIN description d ON U.id = d.userd_id WHERE U.id = $1;';
+        'SELECT U.name, d.description, d.prescription, d.createdat FROM users U JOIN description d ON U.id = d.user_id WHERE U.id = $1;';
         const { rows } = await db.query(query, [id]);
         return rows;
     } catch (error) {
