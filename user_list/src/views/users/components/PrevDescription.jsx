@@ -15,8 +15,10 @@ const PrevDescription = ({descriptions}) => {
                     margin: "15px",
                     marginTop: "0px"
                 }}>
-                    <p key={idx}>Pregunta:  {des.description}</p>
-                    <p key={idx}>Respuesta: {des.prescription}</p>
+                    <p key={idx}>Pregunta:  {des.description} <br></br><br></br>
+                    Respuesta: {des.prescription}
+                    </p>
+                    
                 </div>                
             ))}
         </div>

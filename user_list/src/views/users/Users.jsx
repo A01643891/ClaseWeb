@@ -64,6 +64,28 @@ const Users = () => {
         
     }
 
+    const handleGenerateWithContext = async() => {
+        const prompt = {
+            prompt: form.description
+        }
+        try{
+            const response = await fetch('http://localhost:3000/chat/context', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                //body: JSON.stringify(prompt)
+            });
+            const data = await response.json();
+            setForm({ ...form, prescription: data.response });
+            console.log(data);
+            return data;
+        } catch (error){
+            console.log(error);
+        }
+        
+    }
+
     const handleSaveDescription = async() => {
         const descriptions = {
             description: form.description,
@@ -118,15 +140,40 @@ const Users = () => {
                 <div style={{display: 'flex', alignContent: 'center', justifyContent: 'center', margin: "5px"}}>
                     <button 
                         onClick={handleGenerateHelp}
-                        style={{ height: '35px', width: '140px', backgroundColor: '#399C7E',  border:'none', borderRadius: '5px'}} type="submit">
-                        <p>Generar Respuesta</p>
+                        style={{ 
+                            height: '40px', 
+                            width: '140px', 
+                            backgroundColor: '#399C7E',  
+                            border:'none', 
+                            borderRadius: '5px'}} 
+                        type="submit">
+                        <p>Generar respuesta</p>
+                    </button>
+                </div>
+                <div style={{display: 'flex', alignContent: 'center', justifyContent: 'center', margin: "5px"}}>
+                    <button 
+                        onClick={handleGenerateWithContext}
+                        style={{ 
+                            height: '55px', 
+                            width: '140px', 
+                            backgroundColor: '#399C7E',  
+                            border:'none', 
+                            borderRadius: '5px'}} 
+                        type="submit">
+                        <p>Generar respuesta con Rag</p>
                     </button>
                 </div>
                 <div style={{display: 'flex', alignContent: 'center', justifyContent: 'center', margin: "5px"}}>
                     <button 
                         onClick={handleSaveDescription}
-                        style={{ height: '35px', width: '110px', backgroundColor: '#399C7E',  border:'none', borderRadius: '5px'}} type="submit">
-                        <p>Guardar texto</p>
+                        style={{ 
+                            height: '40px', 
+                            width: '140px', 
+                            backgroundColor: '#399C7E',  
+                            border:'none', 
+                            borderRadius: '5px'}} 
+                        type="submit">
+                        <p>Guardar resultado</p>
                     </button>
                 </div>
             </div>

@@ -31,6 +31,13 @@ const Dashboard = () => {
             <div style={{display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            }}> 
+<h1> PC parts expert</h1>
+            </div>
+            
+            <div style={{display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             flexDirection: 'row',
             flexWrap: 'wrap',
             marginTop: '50px',
