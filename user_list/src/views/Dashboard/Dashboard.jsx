@@ -31,7 +31,9 @@ const Dashboard = () => {
             <div style={{display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            flexDirection: 'column'
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            marginTop: '50px',
             }}>
                 {filteredUsers.map((user) => (
                     <div key={user.id} style={{padding: '1%'}}>

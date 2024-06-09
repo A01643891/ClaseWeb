@@ -1,21 +1,23 @@
 
-const PrevDescription = ({descriptions, prescriptions}) => {
-    console.log(descriptions, prescriptions)
+const PrevDescription = ({descriptions}) => {
+    console.log(descriptions)
     return (
         <div
-            style={{
-                width: "250px",
-                height: "300px",
-                backgroundColor: "white",
-                boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.1",
-                borderRadius: "10px",
-                padding: "10px"
-            }}>
-            {descriptions?.map((des,idx) => (
-                <p key={idx}>{idx} {des.description}</p>
-            ))}
-            {prescriptions?.map((des,idx) => (
-                <p key={idx}>{idx} {des.prescription}</p>
+            >
+            {descriptions?.map((des,idx) => (             
+                <div style={{
+                    width: "250px",
+                    height: "auto",
+                    backgroundColor: "white",
+                    boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.1",
+                    borderRadius: "10px",
+                    padding: "10px",
+                    margin: "15px",
+                    marginTop: "0px"
+                }}>
+                    <p key={idx}>Pregunta:  {des.description}</p>
+                    <p key={idx}>Respuesta: {des.prescription}</p>
+                </div>                
             ))}
         </div>
     );
