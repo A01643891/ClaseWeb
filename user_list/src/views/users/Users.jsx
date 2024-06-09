@@ -65,23 +65,32 @@ const Users = () => {
     }
 
     const handleGenerateWithContext = async() => {
-        const prompt = {
-            prompt: form.description
-        }
-        try{
+        const { description } = form;
+        const context = "Eres un experto acerca de la constitución mexicana.";
+        const prompt = description;
+    
+        const body = JSON.stringify({ context, prompt });
+    
+        try {
             const response = await fetch('http://localhost:3000/chat/context', {
-                method: 'GET',
+                method:'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                //body: JSON.stringify(prompt)
+                body,
             });
             const data = await response.json();
-            setForm({ ...form, prescription: data.response });
+            
+            const newForm = {
+                ...form,
+                prescription: data.response
+            }
+            setForm(newForm);
+    
             console.log(data);
             return data;
-        } catch (error){
-            console.log(error);
+        } catch (error) {
+            console.error('Error:', error);
         }
         
     }

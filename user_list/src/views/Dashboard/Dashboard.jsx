@@ -32,7 +32,7 @@ const Dashboard = () => {
             justifyContent: 'center',
             alignItems: 'center',
             }}> 
-<h1> PC parts expert</h1>
+<h1> Experto en la constitución mexicana</h1>
             </div>
             
             <div style={{display: 'flex',
